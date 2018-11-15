@@ -3,15 +3,15 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="704" height="409"/>
+      <xy x="20" y="20" width="700" height="434"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="677e8" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="677e8" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none">
@@ -20,65 +20,92 @@
         <children>
           <component id="d2f93" class="javax.swing.JButton" binding="play">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="59" height="41"/>
+              </grid>
             </constraints>
             <properties>
-              <icon value="play.ico"/>
-              <text value="PLAY"/>
+              <enabled value="true"/>
+              <icon value="play.png"/>
+              <text value=""/>
+              <toolTipText value="play"/>
             </properties>
           </component>
           <component id="9bb85" class="javax.swing.JButton" binding="next">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="78" height="41"/>
+              </grid>
             </constraints>
             <properties>
-              <icon value="nextTrack.ico"/>
-              <text value="Next"/>
+              <icon value="next.png"/>
+              <text value=""/>
+              <toolTipText value="next track"/>
             </properties>
           </component>
           <component id="fc864" class="javax.swing.JButton" binding="prev">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="78" height="41"/>
+              </grid>
             </constraints>
             <properties>
-              <icon value="prevTrack.ico"/>
-              <text value="Prev"/>
+              <icon value="prev.png"/>
+              <text value=""/>
+              <toolTipText value="previous track"/>
             </properties>
           </component>
           <component id="e9abf" class="javax.swing.JButton" binding="stop">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="78" height="41"/>
+              </grid>
             </constraints>
             <properties>
-              <icon value="stop.ico"/>
-              <text value="STOP"/>
+              <icon value="stop.png"/>
+              <text value=""/>
+              <toolTipText value="stop"/>
+            </properties>
+          </component>
+          <component id="2d3c9" class="javax.swing.JButton" binding="pause">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="78" height="41"/>
+              </grid>
+            </constraints>
+            <properties>
+              <icon value="pause.png"/>
+              <text value=""/>
+              <toolTipText value="pause"/>
+            </properties>
+          </component>
+          <component id="f8bea" class="javax.swing.JSlider" binding="volumeBar">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <value value="100"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="8ded5" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="8ded5" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="line">
           <color color="-7171438"/>
         </border>
         <children>
-          <component id="f8bea" class="javax.swing.JSlider" binding="slider1" default-binding="true">
+          <component id="6b6a6" class="javax.swing.JSlider" binding="loadBar">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <value value="100"/>
-            </properties>
-          </component>
-          <component id="6b6a6" class="javax.swing.JSlider" binding="slider2" default-binding="true">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
+              <enabled value="true"/>
+              <snapToTicks value="false"/>
               <value value="100"/>
             </properties>
           </component>
@@ -87,44 +114,45 @@
       <grid id="1322a" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="line">
           <color color="-7171438"/>
         </border>
         <children>
-          <component id="c426e" class="javax.swing.JList" binding="list1" default-binding="true">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="1" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font size="14"/>
-              <model>
-                <item value="Maroon5 - Sugar"/>
-                <item value="Maroon5 - Maps"/>
-                <item value="Alan Walker - All falls down"/>
-                <item value="Dua lipa - IDGF"/>
-              </model>
-            </properties>
-          </component>
           <component id="303ba" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
-              <text value="Artist - Title"/>
+              <text value="Playlist"/>
             </properties>
           </component>
+          <scrollpane id="5cd19">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="c426e" class="javax.swing.JList" binding="playlist">
+                <constraints/>
+                <properties>
+                  <enabled value="true"/>
+                  <font name="Malgun Gothic" size="14"/>
+                  <model/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
       <grid id="d352b" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="line">
@@ -147,7 +175,7 @@
               <text value="Add folders"/>
             </properties>
           </component>
-          <component id="c42f5" class="javax.swing.JButton" binding="settinsButton" default-binding="true">
+          <component id="c42f5" class="javax.swing.JButton" binding="settingsButton">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -160,7 +188,9 @@
       <grid id="4e7fd" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="333" height="51"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-10370419"/>
@@ -173,8 +203,9 @@
         <children>
           <component id="73f79" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="258" height="45"/>
+                <maximum-size width="400" height="100"/>
               </grid>
             </constraints>
             <properties>

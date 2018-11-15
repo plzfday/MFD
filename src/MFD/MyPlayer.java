@@ -1,29 +1,32 @@
 package MFD;
 
-import javazoom.jl.player.*;
 import javazoom.jl.decoder.*;
+import javazoom.jl.player.AudioDevice;
+import javazoom.jl.player.FactoryRegistry;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.io.FileInputStream;
 
 public class MyPlayer {
-    public static final int BUFFER_SIZE = 10000;
+    private static final int BUFFER_SIZE = 100000;
 
     private Decoder decoder;
     private AudioDevice out;
     private ArrayList<Sample> samples;
-    private int size;
+    private int size, CurrentRecord;
+    private boolean isPlay;
 
-    public MyPlayer(String path) {
+    MyPlayer(String path) {
+        CurrentRecord = 0;
         Open(path);
     }
 
-    public boolean IsInvalid() {
+    private boolean IsInvalid() {
         return (decoder == null || out == null || samples == null || !out.isOpen());
     }
 
-    protected boolean GetSamples(String path) {
+    private boolean GetSamples(String path) {
         if(IsInvalid())
             return false;
         try {
@@ -41,22 +44,18 @@ public class MyPlayer {
                 header = bitstream.readFrame();
             }
 
-        } catch (FileNotFoundException e) {
-            return false;
-        } catch (BitstreamException e) {
-            return false;
-        } catch (DecoderException e) {
+        } catch (FileNotFoundException | BitstreamException | DecoderException e) {
             return false;
         }
         return true;
     }
 
-    public boolean Open(String path) {
+    private boolean Open(String path) {
         Close();
         try {
             decoder = new Decoder();
             out = FactoryRegistry.systemRegistry().createAudioDevice();
-            samples = new ArrayList<Sample>(BUFFER_SIZE);
+            samples = new ArrayList<>(BUFFER_SIZE);
             size = 0;
             out.open(decoder);
             GetSamples(path);
@@ -70,20 +69,27 @@ public class MyPlayer {
         return true;
     }
 
-    public void Play() {
+    void Play() {
         if(IsInvalid())
             return;
+        isPlay = true;
         try {
-            for(int i = 0; i < size; ++i) {
+            for (int i = CurrentRecord; i < size; ++i) {
+                CurrentRecord = i;
+                if (!isPlay) break;
                 out.write(samples.get(i).getBuffer(), 0, samples.get(i).getSize());
             }
-            out.flush();
+            if (isPlay) out.flush();
         } catch (JavaLayerException e) {
 //            e.printStackTrace();
         }
     }
 
-    public void Close() {
+    public void stop() {
+        isPlay = true;
+    }
+
+    private void Close() {
         if((out != null) && !out.isOpen())
             out.close();
         size = 0;
@@ -96,16 +102,16 @@ public class MyPlayer {
         private short[] buffer;
         private int size;
 
-        public Sample(short[] buf, int s) {
+        Sample(short[] buf, int s) {
             buffer = buf.clone();
             size = s;
         }
 
-        public short[] getBuffer() {
+        short[] getBuffer() {
             return buffer;
         }
 
-        public int getSize() {
+        int getSize() {
             return size;
         }
     }
