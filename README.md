@@ -1,5 +1,5 @@
 # MFD - Music for dummies
-The second software of 'For Dummies' series. Which is my school project.  
+The second software of 'For Dummies' series, which is my school project.  
 I do pursue that music player have to be light and easy to use. If this project goes well, I'll use this for myself.
 
 ### Used Language
