@@ -9,112 +9,143 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MusicPlayer {
-    private InputStream is;
+class MusicPlayer {
+	private InputStream is;
 
-    private Player player;
-    private boolean repeat;
-    private boolean paused;
-    private long pauseLocation;
-    private long totalSongLength;
-    private String musicFilePath;
+	private Player player;
+	private boolean repeat;
+	private boolean paused;
+	private long pauseLocation;
+	private long totalSongLength;
+	private String musicFilePath;
 
-    /**
-     * this method is used to play a song, if u want to
-     * repeat this song,  set Repeat to true before
-     * call this method
-     * NOTE: the files to play must be in resources folder
-     */
-    void play(String musicFilePath) throws IOException, JavaLayerException {
-        this.musicFilePath = musicFilePath;
-        is = new FileInputStream(new File(musicFilePath));
-        player = new Player(is);
+	// if nowPlayingIndex is -1, that means not playing now.
+	private int nowPlayingIndex;
 
-        new Thread(() -> {
-            try {
-                while (!player.isComplete() && !repeat && !Thread.currentThread().isInterrupted()) {
-                    totalSongLength = is.available();
-                    player.play();
-                }
-            } catch (JavaLayerException | IOException ignored) {
-            }
-        }).start();
-    }
+	private Thread thread;
 
-    /**
-     * use this method to remuse current paused song
-     */
-    void resume() throws IOException, JavaLayerException {
-        paused = false;
+	/**
+	 * this method is used to play a song, if u want to
+	 * repeat this song,  set Repeat to true before
+	 * call this method
+	 * NOTE: the files to play must be in resources folder
+	 */
+	void play(String musicFilePath, int idx) throws IOException, JavaLayerException {
+		this.musicFilePath = musicFilePath;
+		nowPlayingIndex = idx;
+		is = new FileInputStream(new File(musicFilePath));
+		player = new Player(is);
 
-        is = new FileInputStream(new File(musicFilePath));
+		thread = new Thread(this::run);
+		thread.start();
+	}
 
-        is.skip(totalSongLength - pauseLocation);
+	/**
+	 * use this method to remuse current paused song
+	 */
+	void resume() {
+		paused = false;
 
-        player = new Player(is);
+		try {
+			is = new FileInputStream(new File(musicFilePath));
+			is.skip(totalSongLength - pauseLocation);
+			player = new Player(is);
+		} catch (JavaLayerException | IOException e) {
+			e.printStackTrace();
+		}
 
-        new Thread(() -> {
-            try {
-                player.play();
-            } catch (JavaLayerException ignored) {
-            }
-        }).start();
-    }
+		thread = new Thread(this::run2);
+		thread.start();
+	}
 
 
-    /**
-     * use this method to stop current song that is being
-     * played
-     */
-    void stop() {
-        paused = false;
+	/**
+	 * use this method to stop current song that is being
+	 * played
+	 */
+	void stop() {
+		paused = false;
+		nowPlayingIndex = -1;
+		try {
+			is.close();
+		} catch (IOException ignored) {
+		}
 
-        if (player != null) {
-            player.close();
+		if (player != null) {
+			player.close();
 
-            totalSongLength = 0;
-            pauseLocation = 0;
-            musicFilePath = "";
-        }
-    }
-
-
-    /**
-     * use this method to pause current played song
-     */
-    void pause() {
-        paused = true;
-        if (player != null) {
-            try {
-                pauseLocation = is.available();
-                player.close();
-            } catch (IOException ignored) {
-            }
-        }
-    }
-
-    /**
-     * @return true if the song i will start once is done,
-     * false if not
-     */
-    public boolean isRepeat() {
-        return repeat;
-    }
+			thread.interrupt();
+			totalSongLength = 0;
+			pauseLocation = 0;
+			musicFilePath = "";
+		}
+	}
 
 
-    /**
-     * set if the song will start once is done
-     */
-    public void setRepeat(boolean repeat) {
-        this.repeat = repeat;
-    }
+	/**
+	 * use this method to pause current played song
+	 */
+	void pause() {
+		paused = true;
+		if (player != null) {
+			try {
+				pauseLocation = is.available();
+				player.close();
+			} catch (IOException ignored) {
+			}
+		}
+	}
 
-    boolean isPaused() {
-        return paused;
-    }
+	// 1초 단위
+	void forward(int times) {
+		Move(22000 * times, 1);
+	}
 
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
+	void back(int times) {
+		Move(-22000 * times, 2);
+	}
+
+	private void Move(long l, int Type) {
+		pause();
+		paused = false;
+
+		long a = totalSongLength - pauseLocation + l;
+
+		if ((Type == 1 && a > totalSongLength) || (Type == 2 && a < 0)) a -= l;
+
+		try {
+			is = new FileInputStream(new File(musicFilePath));
+			is.skip(a);
+			player = new Player(is);
+		} catch (JavaLayerException | IOException ignored) {
+		}
+		thread = new Thread(this::run2);
+		thread.start();
+	}
+
+	boolean isPaused() {
+		return paused;
+	}
+
+	int getNowPlayingIndex() {
+		return this.nowPlayingIndex;
+	}
+
+	private void run() {
+		try {
+			while (!player.isComplete() && !repeat) {
+				totalSongLength = is.available();
+				player.play();
+			}
+		} catch (JavaLayerException | IOException ignored) {
+		}
+	}
+
+	private void run2() {
+		try {
+			player.play();
+		} catch (JavaLayerException ignored) {
+		}
+	}
 }
 

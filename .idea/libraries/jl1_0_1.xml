@@ -4,6 +4,11 @@
       <root url="jar://$USER_HOME$/Downloads/JLayer1.0.1/jl1.0.1.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/JLayer1.0.1/jl1.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JLayer1.0.1/jl1.0.1.jar!/javazoom/jl/player" />
+      <root url="jar://$USER_HOME$/Downloads/JLayer1.0.1/jl1.0.1.jar!/javazoom" />
+      <root url="file://$USER_HOME$/Downloads/JLayer1.0.1/src" />
+    </SOURCES>
   </library>
 </component>

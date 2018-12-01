@@ -7,15 +7,6 @@ class MusicList {
     static ArrayList<String> paths = new ArrayList<>();
     static ArrayList<String> name = new ArrayList<>();
 
-    static void printAll() {
-        for (String s : paths) {
-            System.out.println(s);
-        }
-        for (String s : name) {
-            System.out.println(s);
-        }
-    }
-
     /**
      * SaveDataInFile
      * Save data into file so that when open app again
@@ -55,7 +46,7 @@ class MusicList {
                     if (!trigger) MusicList.paths.add(line);
                     else {
                         MusicList.name.add(line);
-                        gui.uAddDataTolist(line);
+	                    gui.uAddData_list(line);
                     }
                 }
                 line = reader.readLine();
