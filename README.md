@@ -5,6 +5,8 @@
 [![Build Status](https://plzfdaypjteam.visualstudio.com/MFD/_apis/build/status/plzfday.MFD?branchName=master)](https://plzfdaypjteam.visualstudio.com/MFD/_build/latest?definitionId=1&branchName=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/edaa32785f374ae2b2c6ad85167e7bd7)](https://www.codacy.com/manual/qkrehddus01/MFD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=plzfday/MFD&amp;utm_campaign=Badge_Grade)
 
+![Demo](/img/demo.jpg)
+
 The second software of 'For Dummies' series, which is my school project.  
 I do pursue that music player have to be light and easy to use. If this project goes well, I'll use this for myself.
 
